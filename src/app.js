@@ -3,13 +3,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("./models/userModel");
+const dotenv = require("dotenv").config();
 const { findById } = require("./models/userModel");
+
 const app = express();
+
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(
-    "mongodb+srv://kouci:kouci@cluster0.rnuvpxg.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO)
   .then(() => {
     console.log("successfully connected to DA database");
   })
